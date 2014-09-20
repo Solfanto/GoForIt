@@ -9,10 +9,18 @@
 /* Begin PBXBuildFile section */
 		E222B16019CD17A6007627AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B15F19CD17A6007627AF /* AppDelegate.swift */; };
 		E222B16219CD17A6007627AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B16119CD17A6007627AF /* ViewController.swift */; };
-		E222B16519CD17A6007627AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E222B16319CD17A6007627AF /* Main.storyboard */; };
 		E222B16719CD17A6007627AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E222B16619CD17A6007627AF /* Images.xcassets */; };
 		E222B16A19CD17A6007627AF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E222B16819CD17A6007627AF /* LaunchScreen.xib */; };
 		E222B17619CD17A6007627AF /* GoForItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B17519CD17A6007627AF /* GoForItTests.swift */; };
+		E222B18019CD186F007627AF /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B17F19CD186F007627AF /* RecorderViewController.swift */; };
+		E222B18419CD2010007627AF /* microphone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18319CD2010007627AF /* microphone@3x.png */; };
+		E222B18619CD20DF007627AF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E222B18519CD20DF007627AF /* AVFoundation.framework */; };
+		E222B18C19CD3954007627AF /* cancel_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18719CD3954007627AF /* cancel_button@3x.png */; };
+		E222B18D19CD3954007627AF /* replay_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18819CD3954007627AF /* replay_button@3x.png */; };
+		E222B18E19CD3954007627AF /* tabbar_alarm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18919CD3954007627AF /* tabbar_alarm@3x.png */; };
+		E222B18F19CD3954007627AF /* tabbar_microphone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18A19CD3954007627AF /* tabbar_microphone@3x.png */; };
+		E222B19019CD3954007627AF /* tabbar_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18B19CD3954007627AF /* tabbar_play@3x.png */; };
+		E222B19219CD3A65007627AF /* record_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B19119CD3A65007627AF /* record_button@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +38,20 @@
 		E222B15E19CD17A6007627AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E222B15F19CD17A6007627AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E222B16119CD17A6007627AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E222B16419CD17A6007627AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E222B16619CD17A6007627AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E222B16919CD17A6007627AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E222B16F19CD17A6007627AF /* GoForItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoForItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E222B17419CD17A6007627AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E222B17519CD17A6007627AF /* GoForItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoForItTests.swift; sourceTree = "<group>"; };
+		E222B17F19CD186F007627AF /* RecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
+		E222B18319CD2010007627AF /* microphone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone@3x.png"; sourceTree = "<group>"; };
+		E222B18519CD20DF007627AF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E222B18719CD3954007627AF /* cancel_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_button@3x.png"; sourceTree = "<group>"; };
+		E222B18819CD3954007627AF /* replay_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "replay_button@3x.png"; sourceTree = "<group>"; };
+		E222B18919CD3954007627AF /* tabbar_alarm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_alarm@3x.png"; sourceTree = "<group>"; };
+		E222B18A19CD3954007627AF /* tabbar_microphone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_microphone@3x.png"; sourceTree = "<group>"; };
+		E222B18B19CD3954007627AF /* tabbar_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_play@3x.png"; sourceTree = "<group>"; };
+		E222B19119CD3A65007627AF /* record_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_button@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E222B18619CD20DF007627AF /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +76,7 @@
 		E222B15119CD17A6007627AF = {
 			isa = PBXGroup;
 			children = (
+				E222B18519CD20DF007627AF /* AVFoundation.framework */,
 				E222B15C19CD17A6007627AF /* GoForIt */,
 				E222B17219CD17A6007627AF /* GoForItTests */,
 				E222B15B19CD17A6007627AF /* Products */,
@@ -77,9 +95,16 @@
 		E222B15C19CD17A6007627AF /* GoForIt */ = {
 			isa = PBXGroup;
 			children = (
+				E222B18319CD2010007627AF /* microphone@3x.png */,
 				E222B15F19CD17A6007627AF /* AppDelegate.swift */,
 				E222B16119CD17A6007627AF /* ViewController.swift */,
-				E222B16319CD17A6007627AF /* Main.storyboard */,
+				E222B18719CD3954007627AF /* cancel_button@3x.png */,
+				E222B19119CD3A65007627AF /* record_button@3x.png */,
+				E222B18819CD3954007627AF /* replay_button@3x.png */,
+				E222B18919CD3954007627AF /* tabbar_alarm@3x.png */,
+				E222B18A19CD3954007627AF /* tabbar_microphone@3x.png */,
+				E222B18B19CD3954007627AF /* tabbar_play@3x.png */,
+				E222B17F19CD186F007627AF /* RecorderViewController.swift */,
 				E222B16619CD17A6007627AF /* Images.xcassets */,
 				E222B16819CD17A6007627AF /* LaunchScreen.xib */,
 				E222B15D19CD17A6007627AF /* Supporting Files */,
@@ -192,9 +217,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E222B16519CD17A6007627AF /* Main.storyboard in Resources */,
+				E222B18D19CD3954007627AF /* replay_button@3x.png in Resources */,
+				E222B19019CD3954007627AF /* tabbar_play@3x.png in Resources */,
 				E222B16A19CD17A6007627AF /* LaunchScreen.xib in Resources */,
 				E222B16719CD17A6007627AF /* Images.xcassets in Resources */,
+				E222B18F19CD3954007627AF /* tabbar_microphone@3x.png in Resources */,
+				E222B18419CD2010007627AF /* microphone@3x.png in Resources */,
+				E222B18C19CD3954007627AF /* cancel_button@3x.png in Resources */,
+				E222B18E19CD3954007627AF /* tabbar_alarm@3x.png in Resources */,
+				E222B19219CD3A65007627AF /* record_button@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E222B16219CD17A6007627AF /* ViewController.swift in Sources */,
+				E222B18019CD186F007627AF /* RecorderViewController.swift in Sources */,
 				E222B16019CD17A6007627AF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,14 +268,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E222B16319CD17A6007627AF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E222B16419CD17A6007627AF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E222B16819CD17A6007627AF /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -407,6 +431,7 @@
 				E222B17B19CD17A6007627AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E222B17C19CD17A6007627AF /* Build configuration list for PBXNativeTarget "GoForItTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +440,7 @@
 				E222B17E19CD17A6007627AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
