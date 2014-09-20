@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NextViewDelegate: class {
-    var newTime: NSDate? {get set}
+    var newTime: Dictionary<String,Int>! {get set}
 }
 
 class NextViewController: UIViewController {
@@ -43,7 +43,15 @@ class NextViewController: UIViewController {
     
     func Save(sender: UIBarButtonItem) {
         //var back = AlarmViewController()
-        self.delegate?.newTime = pickerview.date
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH"
+        var hourString = dateFormatter.stringFromDate(pickerview.date)
+        dateFormatter.dateFormat = "mm"
+        let minuteString = dateFormatter.stringFromDate(pickerview.date)
+        
+        
+        self.delegate?.newTime = ["hour": hourString.toInt()!, "minute": minuteString.toInt()!]
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

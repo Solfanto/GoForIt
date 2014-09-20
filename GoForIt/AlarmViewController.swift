@@ -9,7 +9,7 @@
 import UIKit
 
 class AlarmViewController: UITableViewController, UITableViewDataSource, NextViewDelegate {
-    var newTime: NSDate?
+    var newTime: Dictionary<String, Int>!
     override func viewDidLoad() {
         self.tableView.dataSource = self
         
@@ -18,10 +18,17 @@ class AlarmViewController: UITableViewController, UITableViewDataSource, NextVie
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "onClickMyButton:")
         self.navigationItem.rightBarButtonItem = addButton
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        NSLog("\(self.newTime)")
+        
+        if self.newTime != nil {
+            Alarm.sharedInstance.setNewAlarm(hour: self.newTime["hour"]!, minute: self.newTime["minute"]!, index: 0)
+
+        }
+        
     }
+    
     func onClickMyButton(sender: UIButton) {
         var next = NextViewController()
         next.delegate = self
@@ -35,12 +42,16 @@ class AlarmViewController: UITableViewController, UITableViewDataSource, NextVie
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return Alarm.sharedInstance.getAlarms().count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "MyTestCell")
-        cell.textLabel?.text = "Row #\(indexPath.row)"
+        
+        let time = Alarm.sharedInstance.getAlarms().objectAtIndex(indexPath.row) as? NSMutableDictionary
+        let hour = time?.objectForKey("hour") as NSNumber
+        let minute = time?.objectForKey("minute") as NSNumber
+        cell.textLabel?.text = "\(hour):\(minute)"
         cell.detailTextLabel?.text = "Subtitle #\(indexPath.row)"
         return cell
     }

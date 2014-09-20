@@ -16,15 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = RecorderViewController()
-        window?.makeKeyAndVisible()
         
-        // let navigationController = UINavigationController(rootViewController: AlarmViewController(style: .Plain))
-        // window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        // window?.rootViewController = navigationController
-        // window?.makeKeyAndVisible()
+        let tabBarController = UITabBarController()
+        let alarmViewController = AlarmViewController(style: .Plain)
+        let recorderViewController = RecorderViewController()
+        let tabController1 = UINavigationController(rootViewController: recorderViewController)
+        tabController1.tabBarItem = UITabBarItem(title: "Recorder", image: UIImage(named: "tabbar_microphone"), tag: 1)
+        let tabController2 = UINavigationController(rootViewController: alarmViewController)
+        tabController2.tabBarItem = UITabBarItem(title: "Alarm", image: UIImage(named: "tabbar_alarm"), tag: 2)
+        tabBarController.viewControllers = [tabController1, tabController2]
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
         return true
     }
 
