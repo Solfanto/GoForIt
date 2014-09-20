@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = RecorderViewController()
         window?.makeKeyAndVisible()
         
+        // let navigationController = UINavigationController(rootViewController: AlarmViewController(style: .Plain))
+        // window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        // window?.rootViewController = navigationController
+        // window?.makeKeyAndVisible()
         return true
     }
 
