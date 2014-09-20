@@ -19,6 +19,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     var player: AVAudioPlayer!
     let session = AVAudioSession.sharedInstance()
     
+    var outputFileURL = NSURL.fileURLWithPath(NSTemporaryDirectory().stringByAppendingPathComponent("newMessage.m4a"))
+    
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         
@@ -44,7 +46,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         
         cancelButton.setImage(UIImage(named: "cancel_button"), forState: .Normal)
         cancelButton.frame = CGRect(
-            x: self.view.frame.midX - 140,
+            x: self.view.frame.midX - 120,
             y: self.view.frame.midY - 60 / 2,
             width: 60,
             height: 60
@@ -52,13 +54,21 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         self.view.addSubview(cancelButton)
         cancelButton.hidden = true
         
+        uploadButton.setImage(UIImage(named: "upload_button"), forState: .Normal)
+        uploadButton.frame = CGRect(
+            x: self.view.frame.midX - 60 / 2,
+            y: self.view.frame.midY - 120,
+            width: 60,
+            height: 60
+        )
+        self.view.addSubview(uploadButton)
+        uploadButton.hidden = true
+        
         recordButton.addTarget(self, action: "recordButtonPressed:", forControlEvents: .TouchDown)
-        
         recordButton.addTarget(self, action: "recordButtonReleased:", forControlEvents: .TouchUpInside | .TouchUpOutside)
-        
         replayButton.addTarget(self, action: "replayButtonTapped:", forControlEvents: .TouchUpInside)
-        
         cancelButton.addTarget(self, action: "cancelButtonTapped:", forControlEvents: .TouchUpInside)
+        uploadButton.addTarget(self, action: "uploadButtonTapped:", forControlEvents: .TouchUpInside)
         
         
         session.requestRecordPermission({(granted: Bool)-> Void in
@@ -73,7 +83,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     func setupRecorder() {
 //        var pathComponents = [NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last as String, "newMessage.m4a"]
 //        var outputFileURL = NSURL.fileURLWithPathComponents(pathComponents)
-        var outputFileURL = NSURL.fileURLWithPath(NSTemporaryDirectory().stringByAppendingPathComponent("newMessage.m4a"))
+        
         NSLog("\(outputFileURL)")
         
         // Setup audio session
@@ -121,6 +131,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
             recordButton.hidden = true
             cancelButton.hidden = false
             replayButton.hidden = false
+            uploadButton.hidden = false
         }
     }
     
@@ -139,6 +150,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         recordButton.hidden = false
         replayButton.hidden = true
         cancelButton.hidden = true
+        uploadButton.hidden = true
     }
     
     func updateRecorderMeter(timer:NSTimer) {
@@ -154,5 +166,29 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         }
     }
     
+    func uploadButtonTapped(sender: UIButton) {
+        uploadButton.enabled = false
+        let manager = AFHTTPRequestOperationManager()
+        var parameters = ["uuid": Authentication.sharedInstance.uuid()]
+        
+        manager.POST("http://localhost:3000/cheeringup.json", parameters: parameters,
+            constructingBodyWithBlock: { (formData: AFMultipartFormData!) in
+                let data = NSData(contentsOfURL: self.outputFileURL!)
+                formData.appendPartWithFileData(data, name: "cheeringup[audio_record]", fileName: "cheeringup.caf", mimeType: "audio/caf")
+            },
+            success: { operation, response in
+                println("[success] operation: \(operation), response: \(response)")
+                self.recordButton.hidden = false
+                self.replayButton.hidden = true
+                self.cancelButton.hidden = true
+                self.uploadButton.hidden = true
+                self.uploadButton.enabled = true
+            },
+            failure: { operation, error in
+                println("[fail] operation: \(operation), error: \(error)")
+                self.uploadButton.enabled = true
+            }
+        )
+    }
     
 }
