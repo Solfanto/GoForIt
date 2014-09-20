@@ -174,7 +174,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         manager.POST("http://localhost:3000/cheeringup.json", parameters: parameters,
             constructingBodyWithBlock: { (formData: AFMultipartFormData!) in
                 let data = NSData(contentsOfURL: self.outputFileURL!)
-                formData.appendPartWithFileData(data, name: "cheeringup[audio_record]", fileName: "cheeringup.caf", mimeType: "audio/caf")
+                formData.appendPartWithFileData(data, name: "cheeringup[audio_record]", fileName: "cheeringup.m4a", mimeType: "audio/m4a")
             },
             success: { operation, response in
                 println("[success] operation: \(operation), response: \(response)")

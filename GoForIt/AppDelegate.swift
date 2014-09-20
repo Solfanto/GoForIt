@@ -21,11 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         let alarmViewController = AlarmViewController(style: .Plain)
         let recorderViewController = RecorderViewController()
+        let playViewController = PlayViewController()
+        
         let tabController1 = UINavigationController(rootViewController: recorderViewController)
         tabController1.tabBarItem = UITabBarItem(title: "Recorder", image: UIImage(named: "tabbar_microphone"), tag: 1)
-        let tabController2 = UINavigationController(rootViewController: alarmViewController)
-        tabController2.tabBarItem = UITabBarItem(title: "Alarm", image: UIImage(named: "tabbar_alarm"), tag: 2)
-        tabBarController.viewControllers = [tabController1, tabController2]
+        
+        let tabController2 = UINavigationController(rootViewController: playViewController)
+        tabController2.tabBarItem = UITabBarItem(title: "Cheer me up!", image: UIImage(named: "tabbar_play"), tag: 2)
+        
+        let tabController3 = UINavigationController(rootViewController: alarmViewController)
+        tabController3.tabBarItem = UITabBarItem(title: "Alarm", image: UIImage(named: "tabbar_alarm"), tag: 3)
+        
+        tabBarController.viewControllers = [tabController1, tabController2, tabController3]
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         return true

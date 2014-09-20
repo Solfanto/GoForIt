@@ -27,6 +27,7 @@
 		E2BF74E319CD838C0080DD5E /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF74E119CD838C0080DD5E /* AlarmViewController.swift */; };
 		E2BF74E419CD838C0080DD5E /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF74E219CD838C0080DD5E /* NextViewController.swift */; };
 		E2BF74E619CD86150080DD5E /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF74E519CD86150080DD5E /* Alarm.swift */; };
+		E2BF74E819CD9CDE0080DD5E /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF74E719CD9CDE0080DD5E /* PlayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		E2BF74E119CD838C0080DD5E /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		E2BF74E219CD838C0080DD5E /* NextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		E2BF74E519CD86150080DD5E /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		E2BF74E719CD9CDE0080DD5E /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				E222B18A19CD3954007627AF /* tabbar_microphone@3x.png */,
 				E222B18B19CD3954007627AF /* tabbar_play@3x.png */,
 				E222B17F19CD186F007627AF /* RecorderViewController.swift */,
+				E2BF74E719CD9CDE0080DD5E /* PlayViewController.swift */,
 				E222B19419CD6B0D007627AF /* Authentication.swift */,
 				E2BF74E519CD86150080DD5E /* Alarm.swift */,
 				E222B16619CD17A6007627AF /* Images.xcassets */,
@@ -310,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2BF74E819CD9CDE0080DD5E /* PlayViewController.swift in Sources */,
 				E2BF74E319CD838C0080DD5E /* AlarmViewController.swift in Sources */,
 				E2BF74E419CD838C0080DD5E /* NextViewController.swift in Sources */,
 				E222B16219CD17A6007627AF /* ViewController.swift in Sources */,
