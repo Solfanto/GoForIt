@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7072DAEF19CD4ECE00F288EA /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072DAEE19CD4ECD00F288EA /* NextViewController.swift */; };
+		70BAB52719CD286D00947895 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BAB52619CD286D00947895 /* AlarmViewController.swift */; };
 		E222B16019CD17A6007627AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B15F19CD17A6007627AF /* AppDelegate.swift */; };
 		E222B16219CD17A6007627AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B16119CD17A6007627AF /* ViewController.swift */; };
 		E222B16519CD17A6007627AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E222B16319CD17A6007627AF /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7072DAEE19CD4ECD00F288EA /* NextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		70BAB52619CD286D00947895 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		E222B15A19CD17A6007627AF /* GoForIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoForIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E222B15E19CD17A6007627AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E222B15F19CD17A6007627AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 			children = (
 				E222B15F19CD17A6007627AF /* AppDelegate.swift */,
 				E222B16119CD17A6007627AF /* ViewController.swift */,
+				70BAB52619CD286D00947895 /* AlarmViewController.swift */,
+				7072DAEE19CD4ECD00F288EA /* NextViewController.swift */,
 				E222B16319CD17A6007627AF /* Main.storyboard */,
 				E222B16619CD17A6007627AF /* Images.xcassets */,
 				E222B16819CD17A6007627AF /* LaunchScreen.xib */,
@@ -213,7 +219,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E222B16219CD17A6007627AF /* ViewController.swift in Sources */,
+				7072DAEF19CD4ECE00F288EA /* NextViewController.swift in Sources */,
 				E222B16019CD17A6007627AF /* AppDelegate.swift in Sources */,
+				70BAB52719CD286D00947895 /* AlarmViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +415,7 @@
 				E222B17B19CD17A6007627AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E222B17C19CD17A6007627AF /* Build configuration list for PBXNativeTarget "GoForItTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +424,7 @@
 				E222B17E19CD17A6007627AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
