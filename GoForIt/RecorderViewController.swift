@@ -24,6 +24,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         
+        self.title = "Send your cheers!"
+        
         recordButton.setImage(UIImage(named: "microphone"), forState: .Normal)
         recordButton.setImage(UIImage(named: "record_button"), forState: .Highlighted)
         recordButton.frame = CGRect(
