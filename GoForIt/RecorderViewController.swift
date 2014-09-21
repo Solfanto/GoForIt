@@ -19,12 +19,27 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     var player: AVAudioPlayer!
     let session = AVAudioSession.sharedInstance()
     
+    var go_label: UILabel!
+    var for_it_label: UILabel!
+    
     var outputFileURL = NSURL.fileURLWithPath(NSTemporaryDirectory().stringByAppendingPathComponent("newMessage.m4a"))
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         
-        self.title = "Send your cheers!"
+        self.title = "Go for it!"
+        
+        go_label = UILabel(frame: CGRect(x: 0, y: self.view.frame.maxY / 3 - 140 / 2 + 20, width: self.view.frame.size.width, height: 140))
+        go_label.text = "GO"
+        go_label.textAlignment = .Center
+        go_label.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
+        self.view.addSubview(go_label)
+        
+        for_it_label = UILabel(frame: CGRect(x: 0, y: self.view.frame.maxY * 2 / 3 - 140 / 2 + 20, width: self.view.frame.size.width, height: 140))
+        for_it_label.text = "FOR IT!"
+        for_it_label.textAlignment = .Center
+        for_it_label.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
+        self.view.addSubview(for_it_label)
         
         recordButton.setImage(UIImage(named: "microphone"), forState: .Normal)
         recordButton.setImage(UIImage(named: "record_button"), forState: .Highlighted)
