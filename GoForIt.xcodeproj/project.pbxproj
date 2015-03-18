@@ -14,16 +14,8 @@
 		E222B16A19CD17A6007627AF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E222B16819CD17A6007627AF /* LaunchScreen.xib */; };
 		E222B17619CD17A6007627AF /* GoForItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B17519CD17A6007627AF /* GoForItTests.swift */; };
 		E222B18019CD186F007627AF /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B17F19CD186F007627AF /* RecorderViewController.swift */; };
-		E222B18419CD2010007627AF /* microphone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18319CD2010007627AF /* microphone@3x.png */; };
 		E222B18619CD20DF007627AF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E222B18519CD20DF007627AF /* AVFoundation.framework */; };
-		E222B18C19CD3954007627AF /* cancel_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18719CD3954007627AF /* cancel_button@3x.png */; };
-		E222B18D19CD3954007627AF /* replay_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18819CD3954007627AF /* replay_button@3x.png */; };
-		E222B18E19CD3954007627AF /* tabbar_alarm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18919CD3954007627AF /* tabbar_alarm@3x.png */; };
-		E222B18F19CD3954007627AF /* tabbar_microphone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18A19CD3954007627AF /* tabbar_microphone@3x.png */; };
-		E222B19019CD3954007627AF /* tabbar_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B18B19CD3954007627AF /* tabbar_play@3x.png */; };
-		E222B19219CD3A65007627AF /* record_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B19119CD3A65007627AF /* record_button@3x.png */; };
 		E222B19519CD6B0D007627AF /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B19419CD6B0D007627AF /* Authentication.swift */; };
-		E222B19719CD7342007627AF /* upload_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E222B19619CD7342007627AF /* upload_button@3x.png */; };
 		E2BF74E319CD838C0080DD5E /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF74E119CD838C0080DD5E /* AlarmViewController.swift */; };
 		E2BF74E419CD838C0080DD5E /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF74E219CD838C0080DD5E /* NextViewController.swift */; };
 		E2BF74E619CD86150080DD5E /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF74E519CD86150080DD5E /* Alarm.swift */; };
@@ -53,17 +45,9 @@
 		E222B17419CD17A6007627AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E222B17519CD17A6007627AF /* GoForItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoForItTests.swift; sourceTree = "<group>"; };
 		E222B17F19CD186F007627AF /* RecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
-		E222B18319CD2010007627AF /* microphone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone@3x.png"; sourceTree = "<group>"; };
 		E222B18519CD20DF007627AF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		E222B18719CD3954007627AF /* cancel_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_button@3x.png"; sourceTree = "<group>"; };
-		E222B18819CD3954007627AF /* replay_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "replay_button@3x.png"; sourceTree = "<group>"; };
-		E222B18919CD3954007627AF /* tabbar_alarm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_alarm@3x.png"; sourceTree = "<group>"; };
-		E222B18A19CD3954007627AF /* tabbar_microphone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_microphone@3x.png"; sourceTree = "<group>"; };
-		E222B18B19CD3954007627AF /* tabbar_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_play@3x.png"; sourceTree = "<group>"; };
-		E222B19119CD3A65007627AF /* record_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_button@3x.png"; sourceTree = "<group>"; };
 		E222B19319CD47B2007627AF /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		E222B19419CD6B0D007627AF /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
-		E222B19619CD7342007627AF /* upload_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upload_button@3x.png"; sourceTree = "<group>"; };
 		E2BF74E119CD838C0080DD5E /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		E2BF74E219CD838C0080DD5E /* NextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		E2BF74E519CD86150080DD5E /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
@@ -122,19 +106,11 @@
 		E222B15C19CD17A6007627AF /* GoForIt */ = {
 			isa = PBXGroup;
 			children = (
-				E222B18319CD2010007627AF /* microphone@3x.png */,
 				E222B15F19CD17A6007627AF /* AppDelegate.swift */,
 				E222B19319CD47B2007627AF /* BridgingHeader.h */,
 				E222B16119CD17A6007627AF /* ViewController.swift */,
-				E222B18719CD3954007627AF /* cancel_button@3x.png */,
-				E222B19119CD3A65007627AF /* record_button@3x.png */,
-				E222B18819CD3954007627AF /* replay_button@3x.png */,
 				E2BF74E119CD838C0080DD5E /* AlarmViewController.swift */,
 				E2BF74E219CD838C0080DD5E /* NextViewController.swift */,
-				E222B19619CD7342007627AF /* upload_button@3x.png */,
-				E222B18919CD3954007627AF /* tabbar_alarm@3x.png */,
-				E222B18A19CD3954007627AF /* tabbar_microphone@3x.png */,
-				E222B18B19CD3954007627AF /* tabbar_play@3x.png */,
 				E222B17F19CD186F007627AF /* RecorderViewController.swift */,
 				E2BF74E719CD9CDE0080DD5E /* PlayViewController.swift */,
 				E222B19419CD6B0D007627AF /* Authentication.swift */,
@@ -253,16 +229,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E222B18D19CD3954007627AF /* replay_button@3x.png in Resources */,
-				E222B19019CD3954007627AF /* tabbar_play@3x.png in Resources */,
 				E222B16A19CD17A6007627AF /* LaunchScreen.xib in Resources */,
 				E222B16719CD17A6007627AF /* Images.xcassets in Resources */,
-				E222B18F19CD3954007627AF /* tabbar_microphone@3x.png in Resources */,
-				E222B18419CD2010007627AF /* microphone@3x.png in Resources */,
-				E222B18C19CD3954007627AF /* cancel_button@3x.png in Resources */,
-				E222B18E19CD3954007627AF /* tabbar_alarm@3x.png in Resources */,
-				E222B19719CD7342007627AF /* upload_button@3x.png in Resources */,
-				E222B19219CD3A65007627AF /* record_button@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
