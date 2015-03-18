@@ -83,7 +83,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
                 
         })
         
-        operation.outputStream = NSOutputStream.outputStreamToFileAtPath(recordPath, append: false)
+        operation.outputStream = NSOutputStream(toFileAtPath: recordPath, append: false)
     }
     
     func setupPlayer() {

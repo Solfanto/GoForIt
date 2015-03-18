@@ -28,7 +28,7 @@ class Authentication {
         if _uuid != nil {
             return _uuid
         }
-        _uuid = NSUUID.UUID().UUIDString
+        _uuid = NSUUID().UUIDString
         setUuid(_uuid)
         return _uuid
     }

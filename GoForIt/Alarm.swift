@@ -33,6 +33,9 @@ class Alarm {
         if alarmsArray == nil {
             alarmsArray = NSMutableArray()
         }
+        else {
+            alarmsArray = NSMutableArray(array: alarmsArray!)
+        }
         alarmsArray?.addObject(newElement)
         
         NSUserDefaults.standardUserDefaults().setValue(alarmsArray, forKey: "alarms")
