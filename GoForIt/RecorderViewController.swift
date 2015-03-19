@@ -22,6 +22,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     var go_label: UILabel!
     var for_it_label: UILabel!
     
+    let serviceURL = "http://goforit.solfanto.com"
+//    let serviceURL = "http://localhost:3000"
     var outputFileURL = NSURL.fileURLWithPath(NSTemporaryDirectory().stringByAppendingPathComponent("newMessage.m4a"))
     
     override func viewDidLoad() {
@@ -185,7 +187,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         let manager = AFHTTPRequestOperationManager()
         var parameters = ["uuid": Authentication.sharedInstance.uuid()]
         
-        manager.POST("http://localhost:3000/cheeringup.json", parameters: parameters,
+        manager.POST("\(serviceURL)/cheeringup.json", parameters: parameters,
             constructingBodyWithBlock: { (formData: AFMultipartFormData!) in
                 let data = NSData(contentsOfURL: self.outputFileURL!)
                 formData.appendPartWithFileData(data, name: "cheeringup[audio_record]", fileName: "cheeringup.m4a", mimeType: "audio/m4a")

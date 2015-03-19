@@ -14,7 +14,9 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     
     var recordURL: NSURL!
     var recordPath = NSTemporaryDirectory().stringByAppendingPathComponent("currentMessage.m4a")
-
+    
+    let serviceURL = "http://goforit.solfanto.com"
+    //    let serviceURL = "http://localhost:3000"
     
     var player: AVAudioPlayer!
     var cheer_label: UILabel!
@@ -62,7 +64,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         
         let parameters = ["uuid": Authentication.sharedInstance.uuid()]
         
-        manager.GET("http://localhost:3000/cheeringup", parameters: parameters, success: { (operation, responseObject) in
+        manager.GET("\(serviceURL)/cheeringup", parameters: parameters, success: { (operation, responseObject) in
             self.recordURL = NSURL(fileURLWithPath: self.recordPath)
             self.setupPlayer()
             self.replayButton.enabled = true
@@ -73,7 +75,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             }
             
         }, failure: {(operation, error) in
-            
+            NSLog("error: \(error)")
         })
     }
     
@@ -84,8 +86,8 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             self.setupPlayer()
             self.replayButton.enabled = true
             
-            }, failure: {(operation, error) in
-                
+        }, failure: {(operation, error) in
+            NSLog("error: \(error)")
         })
         
         operation.outputStream = NSOutputStream(toFileAtPath: recordPath, append: false)
