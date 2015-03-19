@@ -29,56 +29,53 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         
         self.title = "Go for it!"
         
-        go_label = UILabel(frame: CGRect(x: 0, y: self.view.frame.maxY / 3 - 140 / 2 + 20, width: self.view.frame.size.width, height: 140))
+        recordButton.setImage(UIImage(named: "microphone"), forState: .Normal)
+        recordButton.setImage(UIImage(named: "record_button"), forState: .Highlighted)
+        self.view.addSubview(recordButton)
+        recordButton.alignCenterWithView(self.view)
+        recordButton.constrainWidth("140")
+        recordButton.constrainHeight("140")
+        
+        go_label = UILabel()
         go_label.text = "GO"
         go_label.textAlignment = .Center
         go_label.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
+        go_label.sizeToFit()
         self.view.addSubview(go_label)
+        go_label.alignCenterXWithView(self.view, predicate: nil)
+        go_label.constrainBottomSpaceToView(recordButton, predicate: "36")
         
-        for_it_label = UILabel(frame: CGRect(x: 0, y: self.view.frame.maxY * 2 / 3 - 140 / 2 + 20, width: self.view.frame.size.width, height: 140))
+        for_it_label = UILabel()
         for_it_label.text = "FOR IT!"
         for_it_label.textAlignment = .Center
         for_it_label.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
+        for_it_label.sizeToFit()
         self.view.addSubview(for_it_label)
-        
-        recordButton.setImage(UIImage(named: "microphone"), forState: .Normal)
-        recordButton.setImage(UIImage(named: "record_button"), forState: .Highlighted)
-        recordButton.frame = CGRect(
-            x: self.view.frame.midX - 140 / 2,
-            y: self.view.frame.midY - 140 / 2,
-            width: 140,
-            height: 140
-        )
-        self.view.addSubview(recordButton)
+        for_it_label.alignCenterXWithView(self.view, predicate: nil)
+        for_it_label.constrainTopSpaceToView(recordButton, predicate: "0")
         
         replayButton.setImage(UIImage(named: "replay_button"), forState: .Normal)
-        replayButton.frame = CGRect(
-            x: self.view.frame.midX - 60 / 2,
-            y: self.view.frame.midY - 60 / 2,
-            width: 60,
-            height: 60
-        )
         self.view.addSubview(replayButton)
+        replayButton.alignCenterWithView(recordButton)
+        replayButton.constrainWidth("60")
+        replayButton.constrainHeight("60")
         replayButton.hidden = true
         
         cancelButton.setImage(UIImage(named: "cancel_button"), forState: .Normal)
-        cancelButton.frame = CGRect(
-            x: self.view.frame.midX - 120,
-            y: self.view.frame.midY - 60 / 2,
-            width: 60,
-            height: 60
-        )
         self.view.addSubview(cancelButton)
+        cancelButton.constrainTrailingSpaceToView(replayButton, predicate: "-30")
+        cancelButton.alignCenterYWithView(replayButton, predicate: nil)
+        cancelButton.constrainWidth("60")
+        cancelButton.constrainHeight("60")
         cancelButton.hidden = true
         
+        
         uploadButton.setImage(UIImage(named: "upload_button"), forState: .Normal)
-        uploadButton.frame = CGRect(
-            x: self.view.frame.midX - 60 / 2,
-            y: self.view.frame.midY - 120,
-            width: 60,
-            height: 60
-        )
         self.view.addSubview(uploadButton)
+        uploadButton.alignCenterXWithView(replayButton, predicate: nil)
+        uploadButton.constrainBottomSpaceToView(replayButton, predicate: "-30")
+        uploadButton.constrainWidth("60")
+        uploadButton.constrainHeight("60")
         uploadButton.hidden = true
         
         recordButton.addTarget(self, action: "recordButtonPressed:", forControlEvents: .TouchDown)

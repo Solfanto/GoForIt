@@ -7,23 +7,20 @@
 //
 import UIKit
 
-protocol NextViewDelegate: class {
+protocol EditAlarmViewDelegate: class {
     var newTime: Dictionary<String,Int>! {get set}
 }
 
-class NextViewController: UIViewController {
+class EditAlarmViewController: UIViewController {
     let pickerview = UIDatePicker()
-    weak var delegate: NextViewDelegate?
+    weak var delegate: EditAlarmViewDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
-        let label = UILabel()
-        label.frame = CGRectMake(0, 0, 100, 100)
-        label.text = "Hello!"
-        self.view.addSubview(label)
         
         pickerview.datePickerMode = .Time
         self.view.addSubview(pickerview)
+        pickerview.alignTopEdgeWithView(self.view, predicate: "\(self.navigationController!.navigationBar.frame.height)")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "Close:")
         self.navigationItem.leftBarButtonItem = cancelButton

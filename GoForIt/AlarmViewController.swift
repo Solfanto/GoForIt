@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmViewController: UITableViewController, UITableViewDataSource, NextViewDelegate {
+class AlarmViewController: UITableViewController, UITableViewDataSource, EditAlarmViewDelegate {
     var newTime: Dictionary<String, Int>!
     override func viewDidLoad() {
         self.tableView.dataSource = self
@@ -30,7 +30,7 @@ class AlarmViewController: UITableViewController, UITableViewDataSource, NextVie
     }
     
     func onClickMyButton(sender: UIButton) {
-        var next = NextViewController()
+        var next = EditAlarmViewController()
         next.delegate = self
         let navigationController = UINavigationController(rootViewController: next)
         self.presentViewController(navigationController, animated: true, completion: nil)

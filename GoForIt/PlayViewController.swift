@@ -25,27 +25,32 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         
         self.title = "Cheer me up!"
         
-        cheer_label = UILabel(frame: CGRect(x: 0, y: self.view.frame.maxY / 3 - 140 / 2 + 20, width: self.view.frame.size.width, height: 140))
+        replayButton.setImage(UIImage(named: "replay_button"), forState: .Normal)
+        replayButton.backgroundColor = UIColor.lightGrayColor()
+        self.view.addSubview(replayButton)
+        replayButton.alignCenterWithView(self.view)
+        replayButton.constrainWidth("60")
+        replayButton.constrainHeight("60")
+        
+        cheer_label = UILabel()
         cheer_label.text = "CHEER"
         cheer_label.textAlignment = .Center
         cheer_label.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
+        cheer_label.sizeToFit()
         self.view.addSubview(cheer_label)
+        cheer_label.alignCenterXWithView(self.view, predicate: nil)
+        cheer_label.constrainBottomSpaceToView(replayButton, predicate: "0")
         
-        me_up_label = UILabel(frame: CGRect(x: 0, y: self.view.frame.maxY * 2 / 3 - 140 / 2 + 20, width: self.view.frame.size.width, height: 140))
+        me_up_label = UILabel()
         me_up_label.text = "ME UP"
         me_up_label.textAlignment = .Center
         me_up_label.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
+        me_up_label.sizeToFit()
         self.view.addSubview(me_up_label)
+        me_up_label.alignCenterXWithView(self.view, predicate: nil)
+        me_up_label.constrainTopSpaceToView(replayButton, predicate: "36")
         
-        replayButton.setImage(UIImage(named: "replay_button"), forState: .Normal)
-        replayButton.backgroundColor = UIColor.lightGrayColor()
-        replayButton.frame = CGRect(
-            x: self.view.frame.midX - 60 / 2,
-            y: self.view.frame.midY - 60 / 2,
-            width: 60,
-            height: 60
-        )
-        self.view.addSubview(replayButton)
+        
         
         replayButton.addTarget(self, action: "replayButtonTapped:", forControlEvents: .TouchUpInside)
     }
