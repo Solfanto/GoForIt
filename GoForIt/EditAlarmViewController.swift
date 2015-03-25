@@ -13,7 +13,9 @@ protocol EditAlarmViewDelegate: class {
 
 class EditAlarmViewController: UIViewController {
     let pickerview = UIDatePicker()
-    weak var delegate: EditAlarmViewDelegate?
+    
+    var delegate: EditAlarmViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
@@ -22,10 +24,10 @@ class EditAlarmViewController: UIViewController {
         self.view.addSubview(pickerview)
         pickerview.alignTopEdgeWithView(self.view, predicate: "\(self.navigationController!.navigationBar.frame.height)")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "Close:")
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "close:")
         self.navigationItem.leftBarButtonItem = cancelButton
         
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "Save:")
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "save:")
         self.navigationItem.rightBarButtonItem = saveButton
     }
     
@@ -34,11 +36,11 @@ class EditAlarmViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func Close(sender: UIBarButtonItem) {
+    func close(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func Save(sender: UIBarButtonItem) {
+    func save(sender: UIBarButtonItem) {
         //var back = AlarmViewController()
         
         let dateFormatter = NSDateFormatter()

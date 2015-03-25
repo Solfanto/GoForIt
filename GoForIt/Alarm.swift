@@ -15,21 +15,20 @@ class Alarm {
     }
     
     func getAlarms() -> NSMutableArray {
-        var alarmsArray = NSUserDefaults.standardUserDefaults().valueForKey("alarms") as? NSMutableArray
+        var alarmsArray = NSUserDefaults.standardUserDefaults().valueForKey("alarms")?.mutableCopy() as? NSMutableArray
         if alarmsArray == nil {
             alarmsArray = NSMutableArray()
         }
         return alarmsArray!
     }
     
-    func setNewAlarm(#hour: NSNumber, minute: NSNumber, index: NSNumber) {
+    func setNewAlarm(#hour: NSNumber, minute: NSNumber) {
         let newElement: NSDictionary = [
             "hour": hour,
-            "minute": minute,
-            "index": index
+            "minute": minute
         ]
         
-        var alarmsArray = NSUserDefaults.standardUserDefaults().valueForKey("alarms") as? NSMutableArray
+        var alarmsArray = NSUserDefaults.standardUserDefaults().valueForKey("alarms")?.mutableCopy() as? NSMutableArray
         if alarmsArray == nil {
             alarmsArray = NSMutableArray()
         }
@@ -42,18 +41,25 @@ class Alarm {
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
-    func removeAlarmAtIndex(index: NSNumber) {
-        var alarmsArray = NSUserDefaults.standardUserDefaults().valueForKey("alarms") as? NSMutableArray
+    func removeAlarmAtIndex(index: Int) {
+        var alarmsArray = NSUserDefaults.standardUserDefaults().valueForKey("alarms")?.mutableCopy() as? NSMutableArray
+        if alarmsArray == nil {
+            alarmsArray = NSMutableArray()
+        }
+        alarmsArray?.removeObjectAtIndex(index)
+        NSUserDefaults.standardUserDefaults().setValue(alarmsArray, forKey: "alarms")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    func moveAlarmFromIndex(fromIndex: Int, toIndex: Int) {
+        var alarmsArray = NSUserDefaults.standardUserDefaults().valueForKey("alarms")?.mutableCopy() as? NSMutableArray
         if alarmsArray == nil {
             alarmsArray = NSMutableArray()
         }
         
-        let indexes = alarmsArray?.indexesOfObjectsPassingTest({ (item, i, stop) -> Bool in
-            let dict = item as NSDictionary
-            return dict.objectForKey("index") as NSNumber == index
-        })
-        
-        alarmsArray?.removeObjectsAtIndexes(indexes!)
+        let object: AnyObject? = alarmsArray?.objectAtIndex(fromIndex)
+        alarmsArray?.removeObjectAtIndex(fromIndex)
+        alarmsArray?.insertObject(object!, atIndex: toIndex)
         
         NSUserDefaults.standardUserDefaults().setValue(alarmsArray, forKey: "alarms")
         NSUserDefaults.standardUserDefaults().synchronize()

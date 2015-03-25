@@ -8,14 +8,20 @@
 
 import UIKit
 
-class AlarmViewController: UITableViewController, UITableViewDataSource, EditAlarmViewDelegate {
+class AlarmViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource, EditAlarmViewDelegate {
     var newTime: Dictionary<String, Int>!
+    var data: NSMutableArray!
+    
     override func viewDidLoad() {
+        data = Alarm.sharedInstance.getAlarms()
+        
+        self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "onClickMyButton:")
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addAlarm:")
         self.navigationItem.rightBarButtonItem = addButton
     }
     
@@ -23,16 +29,17 @@ class AlarmViewController: UITableViewController, UITableViewDataSource, EditAla
         super.viewWillAppear(animated)
         
         if self.newTime != nil {
-            Alarm.sharedInstance.setNewAlarm(hour: self.newTime["hour"]!, minute: self.newTime["minute"]!, index: 0)
-
+            Alarm.sharedInstance.setNewAlarm(hour: self.newTime["hour"]!, minute: self.newTime["minute"]!)
+            self.newTime = nil
+            data = Alarm.sharedInstance.getAlarms()
         }
         
     }
     
-    func onClickMyButton(sender: UIButton) {
-        var next = EditAlarmViewController()
-        next.delegate = self
-        let navigationController = UINavigationController(rootViewController: next)
+    func addAlarm(sender: UIButton) {
+        var controller = EditAlarmViewController()
+        controller.delegate = self
+        let navigationController = UINavigationController(rootViewController: controller)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     
@@ -42,21 +49,33 @@ class AlarmViewController: UITableViewController, UITableViewDataSource, EditAla
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Alarm.sharedInstance.getAlarms().count
+        return data.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "MyTestCell")
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
         
-        let time = Alarm.sharedInstance.getAlarms().objectAtIndex(indexPath.row) as? NSMutableDictionary
+        let time = data.objectAtIndex(indexPath.row) as? NSMutableDictionary
         let hour = time?.objectForKey("hour") as NSNumber
         let minute = time?.objectForKey("minute") as NSNumber
         cell.textLabel?.text = "\(hour):\(minute)"
-        cell.detailTextLabel?.text = "Subtitle #\(indexPath.row)"
+        cell.detailTextLabel?.text = "Alarm #\(indexPath.row)"
         return cell
     }
     
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            Alarm.sharedInstance.removeAlarmAtIndex(indexPath.row)
+            data = Alarm.sharedInstance.getAlarms()
+            tableView.beginUpdates()
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Bottom)
+            tableView.endUpdates()
+        }
+    }
     
 }
 
