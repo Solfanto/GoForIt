@@ -10,10 +10,10 @@ import UIKit
 import AVFoundation
 
 class PlayViewController: UIViewController, AVAudioPlayerDelegate {
-    let replayButton = UIButton.buttonWithType(.Custom) as UIButton
+    let replayButton = UIButton(type: .Custom) as UIButton
     
     var recordURL: NSURL!
-    var recordPath = NSTemporaryDirectory().stringByAppendingPathComponent("currentMessage.m4a")
+    var recordPath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("currentMessage.m4a")
     
     let serviceURL = "http://goforit.solfanto.com"
     //    let serviceURL = "http://localhost:3000"
@@ -70,8 +70,8 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             self.replayButton.enabled = true
             
             NSLog("\(responseObject)")
-            if (responseObject as Dictionary)["status"] == "ok" {
-                self.downloadCheeringup((responseObject as Dictionary)["audio_record"]!)
+            if (responseObject as! Dictionary)["status"] == "ok" {
+                self.downloadCheeringup((responseObject as! Dictionary)["audio_record"]!)
             }
             
         }, failure: {(operation, error) in
@@ -81,7 +81,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     
     func downloadCheeringup(url: String) {
         let manager = AFHTTPRequestOperationManager()
-        var operation = manager.GET(url, parameters: nil, success: {(operation, responseObject) in
+        let operation = manager.GET(url, parameters: nil, success: {(operation, responseObject) in
             self.recordURL = NSURL(fileURLWithPath: self.recordPath)
             self.setupPlayer()
             self.replayButton.enabled = true
@@ -90,12 +90,12 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             NSLog("error: \(error)")
         })
         
-        operation.outputStream = NSOutputStream(toFileAtPath: recordPath, append: false)
+        operation!.outputStream = NSOutputStream(toFileAtPath: recordPath, append: false)
     }
     
     func setupPlayer() {
         if recordURL != nil {
-            player = AVAudioPlayer(contentsOfURL: recordURL, error: nil)
+            player = try? AVAudioPlayer(contentsOfURL: recordURL)
             player?.delegate = self
         }
     }

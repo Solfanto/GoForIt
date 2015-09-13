@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource, EditAlarmViewDelegate {
+class AlarmViewController: UITableViewController, EditAlarmViewDelegate {
     var newTime: Dictionary<String, Int>!
     var data: NSMutableArray!
     
@@ -37,7 +37,7 @@ class AlarmViewController: UITableViewController, UITableViewDelegate, UITableVi
     }
     
     func addAlarm(sender: UIButton) {
-        var controller = EditAlarmViewController()
+        let controller = EditAlarmViewController()
         controller.delegate = self
         let navigationController = UINavigationController(rootViewController: controller)
         self.presentViewController(navigationController, animated: true, completion: nil)
@@ -56,8 +56,8 @@ class AlarmViewController: UITableViewController, UITableViewDelegate, UITableVi
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
         
         let time = data.objectAtIndex(indexPath.row) as? NSMutableDictionary
-        let hour = time?.objectForKey("hour") as NSNumber
-        let minute = time?.objectForKey("minute") as NSNumber
+        let hour = time?.objectForKey("hour") as! NSNumber
+        let minute = time?.objectForKey("minute") as! NSNumber
         cell.textLabel?.text = "\(hour):\(minute)"
         cell.detailTextLabel?.text = "Alarm #\(indexPath.row)"
         return cell

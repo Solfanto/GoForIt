@@ -45,12 +45,12 @@ class EditAlarmViewController: UIViewController {
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH"
-        var hourString = dateFormatter.stringFromDate(pickerview.date)
+        let hourString = dateFormatter.stringFromDate(pickerview.date)
         dateFormatter.dateFormat = "mm"
         let minuteString = dateFormatter.stringFromDate(pickerview.date)
         
         
-        self.delegate?.newTime = ["hour": hourString.toInt()!, "minute": minuteString.toInt()!]
+        self.delegate?.newTime = ["hour": Int(hourString)!, "minute": Int(minuteString)!]
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

@@ -22,7 +22,7 @@ class Alarm {
         return alarmsArray!
     }
     
-    func setNewAlarm(#hour: NSNumber, minute: NSNumber) {
+    func setNewAlarm(hour hour: NSNumber, minute: NSNumber) {
         let newElement: NSDictionary = [
             "hour": hour,
             "minute": minute

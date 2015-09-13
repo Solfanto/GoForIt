@@ -10,10 +10,10 @@ import UIKit
 import AVFoundation
 
 class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
-    let recordButton = UIButton.buttonWithType(.Custom) as UIButton
-    let replayButton = UIButton.buttonWithType(.Custom) as UIButton
-    let cancelButton = UIButton.buttonWithType(.Custom) as UIButton
-    let uploadButton = UIButton.buttonWithType(.Custom) as UIButton
+    let recordButton = UIButton(type: .Custom) as UIButton
+    let replayButton = UIButton(type: .Custom) as UIButton
+    let cancelButton = UIButton(type: .Custom) as UIButton
+    let uploadButton = UIButton(type: .Custom) as UIButton
     
     var recorder: AVAudioRecorder!
     var player: AVAudioPlayer!
@@ -24,7 +24,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     
     let serviceURL = "http://goforit.solfanto.com"
 //    let serviceURL = "http://localhost:3000"
-    var outputFileURL = NSURL.fileURLWithPath(NSTemporaryDirectory().stringByAppendingPathComponent("newMessage.m4a"))
+    var outputFileURL = NSURL.fileURLWithPath((NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("newMessage.m4a"))
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
@@ -81,7 +81,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         uploadButton.hidden = true
         
         recordButton.addTarget(self, action: "recordButtonPressed:", forControlEvents: .TouchDown)
-        recordButton.addTarget(self, action: "recordButtonReleased:", forControlEvents: .TouchUpInside | .TouchUpOutside)
+        recordButton.addTarget(self, action: "recordButtonReleased:", forControlEvents: .TouchUpInside)
+        recordButton.addTarget(self, action: "recordButtonReleased:", forControlEvents: .TouchUpOutside)
         replayButton.addTarget(self, action: "replayButtonTapped:", forControlEvents: .TouchUpInside)
         cancelButton.addTarget(self, action: "cancelButtonTapped:", forControlEvents: .TouchUpInside)
         uploadButton.addTarget(self, action: "uploadButtonTapped:", forControlEvents: .TouchUpInside)
@@ -91,7 +92,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
             if granted {
                 self.setupRecorder()
             } else {
-                println("Permission to record not granted")
+                print("Permission to record not granted")
             }
         })
     }
@@ -102,23 +103,26 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         
         NSLog("\(outputFileURL)")
         
-        // Setup audio session
-        session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
+        do {
+            // Setup audio session
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        } catch _ {
+        }
         
         // Define the recorder setting
-        var recordSettings = [
-            AVFormatIDKey: kAudioFormatMPEG4AAC,
+        let recordSettings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 44100.0,
             AVNumberOfChannelsKey: 2
-        ]
+        ] as [String : AnyObject]
         
         // Initiate and prepare the recorder
-        recorder = AVAudioRecorder(URL: outputFileURL, settings: recordSettings, error: nil)
+        recorder = try? AVAudioRecorder(URL: outputFileURL, settings: recordSettings)
         recorder.delegate = self
         recorder.meteringEnabled = true
         recorder.prepareToRecord()
         
-        var recorderTimer = NSTimer.scheduledTimerWithTimeInterval(0.1,
+        NSTimer.scheduledTimerWithTimeInterval(0.1,
             target: self,
             selector: "updateRecorderMeter:",
             userInfo: nil,
@@ -129,7 +133,10 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     func recordButtonPressed(sender: UIButton) {
         if !recorder.recording {
             self.view.backgroundColor = UIColor.lightGrayColor()
-            session.setActive(true, error: nil)
+            do {
+                try session.setActive(true)
+            } catch _ {
+            }
             
             // Start recording
             recorder.record()
@@ -140,9 +147,12 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     func recordButtonReleased(sender: UIButton) {
         if recorder.recording {
             recorder.stop()
-            player = AVAudioPlayer(contentsOfURL: recorder.url, error: nil)
+            player = try? AVAudioPlayer(contentsOfURL: recorder.url)
             player.delegate = self
-            session.setActive(false, error: nil)
+            do {
+                try session.setActive(false)
+            } catch _ {
+            }
             
             recordButton.hidden = true
             cancelButton.hidden = false
@@ -176,7 +186,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
             let sec:Int = Int(recorder.currentTime % 60)
             let time = "\(String(format: dFormat, min)):\(String(format: dFormat, sec))"
             recorder.updateMeters()
-            var apc0 = recorder.averagePowerForChannel(0)
+            // var apc0 = recorder.averagePowerForChannel(0)
 //            var peak0 = recorder.peakPowerForChannel(0)
             NSLog("\(time)")
         }
@@ -185,15 +195,15 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     func uploadButtonTapped(sender: UIButton) {
         uploadButton.enabled = false
         let manager = AFHTTPRequestOperationManager()
-        var parameters = ["uuid": Authentication.sharedInstance.uuid()]
+        let parameters = ["uuid": Authentication.sharedInstance.uuid()]
         
         manager.POST("\(serviceURL)/cheeringup.json", parameters: parameters,
             constructingBodyWithBlock: { (formData: AFMultipartFormData!) in
-                let data = NSData(contentsOfURL: self.outputFileURL!)
-                formData.appendPartWithFileData(data, name: "cheeringup[audio_record]", fileName: "cheeringup.m4a", mimeType: "audio/m4a")
+                let data = NSData(contentsOfURL: self.outputFileURL)
+                formData.appendPartWithFileData(data!, name: "cheeringup[audio_record]", fileName: "cheeringup.m4a", mimeType: "audio/m4a")
             },
             success: { operation, response in
-                println("[success] operation: \(operation), response: \(response)")
+                print("[success] operation: \(operation), response: \(response)")
                 self.recordButton.hidden = false
                 self.replayButton.hidden = true
                 self.cancelButton.hidden = true
@@ -201,7 +211,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
                 self.uploadButton.enabled = true
             },
             failure: { operation, error in
-                println("[fail] operation: \(operation), error: \(error)")
+                print("[fail] operation: \(operation), error: \(error)")
                 self.uploadButton.enabled = true
             }
         )
