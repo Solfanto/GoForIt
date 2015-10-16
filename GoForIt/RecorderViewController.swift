@@ -87,6 +87,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         cancelButton.addTarget(self, action: "cancelButtonTapped:", forControlEvents: .TouchUpInside)
         uploadButton.addTarget(self, action: "uploadButtonTapped:", forControlEvents: .TouchUpInside)
         
+        let aboutButton = UIBarButtonItem(title: "About", style: UIBarButtonItemStyle.Done, target: self, action: "openAbout")
+        self.navigationItem.rightBarButtonItem = aboutButton
         
         session.requestRecordPermission({(granted: Bool)-> Void in
             if granted {
@@ -217,4 +219,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         )
     }
     
+    func openAbout() {
+        let controller = AboutViewController()
+        self.presentViewController(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+    }
 }
