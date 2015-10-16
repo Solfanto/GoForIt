@@ -19,8 +19,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
     var player: AVAudioPlayer!
     let session = AVAudioSession.sharedInstance()
     
-    var go_label: UILabel!
-    var for_it_label: UILabel!
+    var goLabel: UILabel!
+    var forItLabel: UILabel!
     
     let serviceURL = "http://goforit.solfanto.com"
 //    let serviceURL = "http://localhost:3000"
@@ -38,23 +38,23 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
         recordButton.constrainWidth("140")
         recordButton.constrainHeight("140")
         
-        go_label = UILabel()
-        go_label.text = "GO"
-        go_label.textAlignment = .Center
-        go_label.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
-        go_label.sizeToFit()
-        self.view.addSubview(go_label)
-        go_label.alignCenterXWithView(self.view, predicate: nil)
-        go_label.constrainBottomSpaceToView(recordButton, predicate: "36")
+        goLabel = UILabel()
+        goLabel.text = "GO"
+        goLabel.textAlignment = .Center
+        goLabel.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
+        goLabel.sizeToFit()
+        self.view.addSubview(goLabel)
+        goLabel.alignCenterXWithView(self.view, predicate: nil)
+        goLabel.constrainBottomSpaceToView(recordButton, predicate: "36")
         
-        for_it_label = UILabel()
-        for_it_label.text = "FOR IT!"
-        for_it_label.textAlignment = .Center
-        for_it_label.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
-        for_it_label.sizeToFit()
-        self.view.addSubview(for_it_label)
-        for_it_label.alignCenterXWithView(self.view, predicate: nil)
-        for_it_label.constrainTopSpaceToView(recordButton, predicate: "0")
+        forItLabel = UILabel()
+        forItLabel.text = "FOR IT!"
+        forItLabel.textAlignment = .Center
+        forItLabel.font = UIFont(name: "DINCondensed-Bold", size: 120.0)
+        forItLabel.sizeToFit()
+        self.view.addSubview(forItLabel)
+        forItLabel.alignCenterXWithView(self.view, predicate: nil)
+        forItLabel.constrainTopSpaceToView(recordButton, predicate: "0")
         
         replayButton.setImage(UIImage(named: "replay_button"), forState: .Normal)
         self.view.addSubview(replayButton)
