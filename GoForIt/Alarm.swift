@@ -22,8 +22,9 @@ class Alarm {
         return alarmsArray!
     }
     
-    func setNewAlarm(hour hour: NSNumber, minute: NSNumber) {
+    func setNewAlarm(id id: Int? = nil, hour: NSNumber, minute: NSNumber) {
         let newElement: NSDictionary = [
+            "id": "\(NSDate())",
             "hour": hour,
             "minute": minute
         ]
@@ -35,10 +36,46 @@ class Alarm {
         else {
             alarmsArray = NSMutableArray(array: alarmsArray!)
         }
-        alarmsArray?.addObject(newElement)
+        if id != nil {
+            alarmsArray?.insertObject(newElement, atIndex: id!)
+        }
+        else {
+            alarmsArray?.addObject(newElement)
+        }
         
         NSUserDefaults.standardUserDefaults().setValue(alarmsArray, forKey: "alarms")
         NSUserDefaults.standardUserDefaults().synchronize()
+        
+        let calendar = NSCalendar.autoupdatingCurrentCalendar()
+        
+        // set components for time 7:00 a.m.
+        
+        let componentsForFireDate = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: NSDate())
+        
+        componentsForFireDate.hour = hour as Int
+        componentsForFireDate.minute = minute as Int
+        componentsForFireDate.second = 0
+        
+        let fireDateOfNotification = calendar.dateFromComponents(componentsForFireDate)
+        
+        // Create the notification
+        
+        let notification = UILocalNotification()
+        
+        notification.fireDate = fireDateOfNotification
+        notification.timeZone = NSTimeZone.localTimeZone()
+        notification.alertBody = "Cheer up!"
+        notification.alertAction = "Listen"
+        notification.userInfo = ["id": "\(NSDate())"]
+        notification.repeatInterval = .Day
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.applicationIconBadgeNumber = 1
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    func editAlarm(id id: Int, hour: NSNumber, minute: NSNumber) {
+        removeAlarmAtIndex(id)
+        setNewAlarm(id: id, hour: hour, minute: minute)
     }
     
     func removeAlarmAtIndex(index: Int) {
@@ -46,6 +83,23 @@ class Alarm {
         if alarmsArray == nil {
             alarmsArray = NSMutableArray()
         }
+        
+        let app = UIApplication.sharedApplication()
+        let uidtodelete = alarmsArray![index]["id"] as! String
+        for oneEvent in app.scheduledLocalNotifications! {
+            let notification = oneEvent as UILocalNotification
+            let userInfoCurrent = notification.userInfo as! [String:AnyObject]
+            let uid = userInfoCurrent["id"] as! String
+            if alarmsArray?.count <= 1 {
+                app.cancelLocalNotification(notification)
+            }
+            else if uid == uidtodelete {
+                //Cancelling local notification
+                app.cancelLocalNotification(notification)
+                break
+            }
+        }
+        
         alarmsArray?.removeObjectAtIndex(index)
         NSUserDefaults.standardUserDefaults().setValue(alarmsArray, forKey: "alarms")
         NSUserDefaults.standardUserDefaults().synchronize()

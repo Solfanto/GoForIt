@@ -101,7 +101,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudio
 //        var pathComponents = [NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last as String, "newMessage.m4a"]
 //        var outputFileURL = NSURL.fileURLWithPathComponents(pathComponents)
         
-        NSLog("\(outputFileURL)")
+//        NSLog("\(outputFileURL)")
         
         do {
             // Setup audio session

@@ -11,6 +11,7 @@ import UIKit
 class AlarmViewController: UITableViewController, EditAlarmViewDelegate {
     var newTime: Dictionary<String, Int>!
     var data: NSMutableArray!
+    var currentId: Int?
     
     override func viewDidLoad() {
         data = Alarm.sharedInstance.getAlarms()
@@ -28,12 +29,20 @@ class AlarmViewController: UITableViewController, EditAlarmViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if self.newTime != nil {
-            Alarm.sharedInstance.setNewAlarm(hour: self.newTime["hour"]!, minute: self.newTime["minute"]!)
-            self.newTime = nil
+        if self.newTime != nil && self.currentId != nil {
+            Alarm.sharedInstance.editAlarm(id: self.currentId!, hour: self.newTime["hour"]!, minute: self.newTime["minute"]!)
             data = Alarm.sharedInstance.getAlarms()
+            
+            self.tableView.reloadData()
         }
-        
+        else if self.newTime != nil {
+            Alarm.sharedInstance.setNewAlarm(hour: self.newTime["hour"]!, minute: self.newTime["minute"]!)
+            data = Alarm.sharedInstance.getAlarms()
+            
+            self.tableView.reloadData()
+        }
+        self.newTime = nil
+        self.currentId = nil
     }
     
     func addAlarm(sender: UIButton) {
@@ -56,8 +65,8 @@ class AlarmViewController: UITableViewController, EditAlarmViewDelegate {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
         
         let time = data.objectAtIndex(indexPath.row) as? NSMutableDictionary
-        let hour = time?.objectForKey("hour") as! NSNumber
-        let minute = time?.objectForKey("minute") as! NSNumber
+        let hour = String(format: "%02d", time?.objectForKey("hour") as! Int)
+        let minute = String(format: "%02d", time?.objectForKey("minute") as! Int)
         cell.textLabel?.text = "\(hour):\(minute)"
         cell.detailTextLabel?.text = "Alarm #\(indexPath.row)"
         return cell
@@ -77,5 +86,11 @@ class AlarmViewController: UITableViewController, EditAlarmViewDelegate {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let controller = EditAlarmViewController()
+        controller.delegate = self
+        controller.id = indexPath.row
+        self.presentViewController(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+    }
 }
 

@@ -69,7 +69,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             self.setupPlayer()
             self.replayButton.enabled = true
             
-            NSLog("\(responseObject)")
+//            NSLog("\(responseObject)")
             if (responseObject as! Dictionary)["status"] == "ok" {
                 self.downloadCheeringup((responseObject as! Dictionary)["audio_record"]!)
             }

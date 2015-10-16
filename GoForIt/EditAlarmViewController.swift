@@ -9,16 +9,27 @@ import UIKit
 
 protocol EditAlarmViewDelegate: class {
     var newTime: Dictionary<String,Int>! {get set}
+    var currentId: Int? {get set}
 }
 
 class EditAlarmViewController: UIViewController {
     let pickerview = UIDatePicker()
+    
+    var id: Int?
     
     var delegate: EditAlarmViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
+        
+        if self.id != nil {
+            let alarm = Alarm.sharedInstance.getAlarms()[self.id!] as! NSDictionary
+            let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: NSDate())
+            components.hour = alarm["hour"] as! Int
+            components.minute = alarm["minute"] as! Int
+            pickerview.date = NSCalendar.currentCalendar().dateFromComponents(components)!
+        }
         
         pickerview.datePickerMode = .Time
         self.view.addSubview(pickerview)
@@ -29,6 +40,8 @@ class EditAlarmViewController: UIViewController {
         
         let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "save:")
         self.navigationItem.rightBarButtonItem = saveButton
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,6 +64,7 @@ class EditAlarmViewController: UIViewController {
         
         
         self.delegate?.newTime = ["hour": Int(hourString)!, "minute": Int(minuteString)!]
+        self.delegate?.currentId = self.id
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
