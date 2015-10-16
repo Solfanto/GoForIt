@@ -8,11 +8,9 @@
 
 import UIKit
 
-private let _alarmInstance = Alarm()
 class Alarm {
-    class var sharedInstance: Alarm {
-        return _alarmInstance
-    }
+    
+    static let sharedInstance = Alarm()
     
     func getAlarms() -> NSMutableArray {
         var alarmsArray = NSUserDefaults.standardUserDefaults().valueForKey("alarms")?.mutableCopy() as? NSMutableArray
